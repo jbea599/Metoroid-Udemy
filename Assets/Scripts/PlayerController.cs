@@ -23,9 +23,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Horizontal movement
         theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
 
-        if (Input.GetButtonDown("Jump")&&isOnGround) {
+        //Vertical movement 
+        isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+        if (Input.GetButtonDown("Jump") && isOnGround) {
 
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
